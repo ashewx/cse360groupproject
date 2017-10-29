@@ -19,6 +19,8 @@ import javax.swing.JMenuItem;
 import java.awt.GridLayout;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import net.miginfocom.swing.MigLayout;
+import javax.swing.JLabel;
 
 public class MainWindow {
 
@@ -58,6 +60,7 @@ public class MainWindow {
 		frmTextAnalyzer.getContentPane().setLayout(new BorderLayout(0, 0));
 		
 		JSplitPane splitPane = new JSplitPane();
+		splitPane.setResizeWeight(0.3);
 		
 		JTextArea textArea = new JTextArea();
 		textArea.setEditable(false);
@@ -65,16 +68,13 @@ public class MainWindow {
 		
 		JPanel panel = new JPanel();
 		splitPane.setLeftComponent(panel);
-		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 447, Short.MAX_VALUE)
-		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 616, Short.MAX_VALUE)
-		);
-		panel.setLayout(gl_panel);
+		panel.setLayout(new MigLayout("", "[][]", "[][][][][]"));
+		
+		JLabel lblMostCommonWord = new JLabel("Most common word:");
+		panel.add(lblMostCommonWord, "cell 1 2");
+		
+		JLabel lblNumberOfSpaces = new JLabel("Number of spaces:");
+		panel.add(lblNumberOfSpaces, "cell 1 3");
 		frmTextAnalyzer.getContentPane().add(splitPane);
 		
 		JMenuBar menuBar = new JMenuBar();
