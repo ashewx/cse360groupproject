@@ -16,6 +16,9 @@ import javax.swing.JTextArea;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import java.awt.GridLayout;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 
 public class MainWindow {
 
@@ -52,22 +55,9 @@ public class MainWindow {
 		frmTextAnalyzer.setTitle("Text Analyzer");
 		frmTextAnalyzer.setBounds(100, 100, 1146, 657);
 		frmTextAnalyzer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmTextAnalyzer.getContentPane().setLayout(new BorderLayout(0, 0));
 		
 		JSplitPane splitPane = new JSplitPane();
-		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
-		GroupLayout groupLayout = new GroupLayout(frmTextAnalyzer.getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addComponent(splitPane, GroupLayout.PREFERRED_SIZE, 1130, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addComponent(splitPane, GroupLayout.PREFERRED_SIZE, 618, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		);
 		
 		JTextArea textArea = new JTextArea();
 		textArea.setEditable(false);
@@ -75,31 +65,17 @@ public class MainWindow {
 		
 		JPanel panel = new JPanel();
 		splitPane.setLeftComponent(panel);
-		
-		JButton btnLoadFile = new JButton("Load File");
-		
-		JButton btnFileHistory = new JButton("File History");
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(btnLoadFile)
-					.addGap(18)
-					.addComponent(btnFileHistory)
-					.addContainerGap(940, Short.MAX_VALUE))
+				.addGap(0, 447, Short.MAX_VALUE)
 		);
 		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnLoadFile)
-						.addComponent(btnFileHistory))
-					.addContainerGap(166, Short.MAX_VALUE))
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGap(0, 616, Short.MAX_VALUE)
 		);
 		panel.setLayout(gl_panel);
-		frmTextAnalyzer.getContentPane().setLayout(groupLayout);
+		frmTextAnalyzer.getContentPane().add(splitPane);
 		
 		JMenuBar menuBar = new JMenuBar();
 		frmTextAnalyzer.setJMenuBar(menuBar);
