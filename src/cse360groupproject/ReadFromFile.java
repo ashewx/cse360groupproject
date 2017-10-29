@@ -1,3 +1,5 @@
+package cse360groupproject;
+
 import java.io.*;
 
 public class ReadFromFile
