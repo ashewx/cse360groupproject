@@ -68,13 +68,52 @@ public class MainWindow {
 		
 		JPanel panel = new JPanel();
 		splitPane.setLeftComponent(panel);
-		panel.setLayout(new MigLayout("", "[][]", "[][][][][]"));
+		panel.setLayout(new MigLayout("", "[][][][][]", "[][][][][][][][][][][][][][][][][][][][][][]"));
 		
-		JLabel lblMostCommonWord = new JLabel("Most common word:");
-		panel.add(lblMostCommonWord, "cell 1 2");
+		JLabel lbNumLines = new JLabel("Number of lines:");
+		panel.add(lbNumLines, "cell 1 2");
 		
-		JLabel lblNumberOfSpaces = new JLabel("Number of spaces:");
-		panel.add(lblNumberOfSpaces, "cell 1 3");
+		JLabel numLines = new JLabel("null");
+		panel.add(numLines, "cell 4 2");
+		
+		JLabel lbNumberBlankLines = new JLabel("Number of blank lines:");
+		panel.add(lbNumberBlankLines, "cell 1 3");
+		
+		JLabel numBlank = new JLabel("null");
+		panel.add(numBlank, "cell 4 3");
+		
+		JLabel lblNumOfSpaces = new JLabel("Number of spaces:");
+		panel.add(lblNumOfSpaces, "cell 1 4");
+		
+		JLabel numSpaces = new JLabel("null");
+		panel.add(numSpaces, "cell 4 4");
+		
+		JLabel numWords = new JLabel("null");
+		panel.add(numWords, "cell 4 5");
+		
+		JLabel lblNewLabel = new JLabel("Average characters per line:");
+		panel.add(lblNewLabel, "cell 1 6");
+		
+		JLabel avrgCharPerLine = new JLabel("null");
+		panel.add(avrgCharPerLine, "cell 4 6");
+		
+		JLabel lblAverageWordLength = new JLabel("Average Word Length:");
+		panel.add(lblAverageWordLength, "cell 1 7");
+		
+		JLabel avrgWordLength = new JLabel("null");
+		panel.add(avrgWordLength, "cell 4 7");
+		
+		JLabel lblMostCommonWords = new JLabel("Most common words:");
+		panel.add(lblMostCommonWords, "cell 1 8");
+		
+		JLabel lblNumberOfWords = new JLabel("Number of Words:");
+		panel.add(lblNumberOfWords, "cell 1 5");
+		
+		JLabel mostCmnWords = new JLabel("null");
+		panel.add(mostCmnWords, "cell 4 8");
+		
+		JButton btnFileHistoryStatisics = new JButton("File History Statisics");
+		panel.add(btnFileHistoryStatisics, "cell 1 21");
 		frmTextAnalyzer.getContentPane().add(splitPane);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -88,5 +127,11 @@ public class MainWindow {
 		
 		JMenuItem mntmFileHistory = new JMenuItem("File History");
 		mnFile.add(mntmFileHistory);
+		
+		JMenu mnHelp = new JMenu("Help");
+		menuBar.add(mnHelp);
+		
+		JMenuItem mntmUserGuide = new JMenuItem("User Guide");
+		mnHelp.add(mntmUserGuide);
 	}
 }
