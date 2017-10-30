@@ -67,6 +67,12 @@ public class MainWindow {
 		splitPane.setLeftComponent(panel);
 		panel.setLayout(new MigLayout("", "[][][][][]", "[][][][][][][][][][][][][][][][][][][][][][]"));
 		
+		JLabel lblFileLoaded = new JLabel("File Loaded:");
+		panel.add(lblFileLoaded, "cell 1 0");
+		
+		JLabel loadedFileName = new JLabel("");
+		panel.add(loadedFileName, "cell 4 0");
+		
 		JLabel lbNumLines = new JLabel("Number of lines:");
 		panel.add(lbNumLines, "cell 1 2");
 		
@@ -137,10 +143,20 @@ public class MainWindow {
 		mntmLoadFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JFileChooser chooser = new JFileChooser();
-				chooser.showOpenDialog(null);
-				File f = chooser.getSelectedFile();
 				
-				if(f == null) {
+				// Validate file is .txt
+				int rc = chooser.showOpenDialog(null);
+			    while (rc == JFileChooser.APPROVE_OPTION
+			        && !chooser.getSelectedFile().getName().endsWith(".txt")) {
+			      JOptionPane.showMessageDialog(null, "The file "
+			          + chooser.getSelectedFile() + " is not a valid text source file.",
+			          "Open Error", JOptionPane.ERROR_MESSAGE);
+			      rc = chooser.showOpenDialog(null);
+			    }
+			    
+			    // Do stuff with .txt file
+			    File f = chooser.getSelectedFile();
+				if(f == null || !chooser.getSelectedFile().getName().endsWith(".txt")) {
 					System.out.println("No file selected!");
 				} else {
 					try
@@ -148,6 +164,7 @@ public class MainWindow {
 						String filename = f.getAbsolutePath();
 						FileReader reader = new FileReader(filename);
 						BufferedReader br = new BufferedReader(reader);
+						loadedFileName.setText(chooser.getSelectedFile().getName());
 						textArea.read(br, null);
 						br.close();
 						textArea.requestFocus();
