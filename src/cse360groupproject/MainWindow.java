@@ -21,8 +21,6 @@ import javax.swing.JOptionPane;
 
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import javax.swing.JScrollPane;
 
 public class MainWindow {

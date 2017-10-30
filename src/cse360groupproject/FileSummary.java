@@ -14,12 +14,12 @@ import javax.swing.JLabel;
 public class FileSummary {
 
 	private JFrame frame;
-	private static JFrame mainFrame;
+	private JFrame mainFrame;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void NewFileSummary() {
+	public void NewFileSummary() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
