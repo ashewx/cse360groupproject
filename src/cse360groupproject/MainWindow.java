@@ -23,6 +23,7 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JScrollPane;
 
 public class MainWindow {
 
@@ -63,10 +64,6 @@ public class MainWindow {
 		
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setResizeWeight(0.3);
-		
-		JTextArea textArea = new JTextArea();
-		textArea.setEditable(false);
-		splitPane.setRightComponent(textArea);
 		
 		JPanel panel = new JPanel();
 		splitPane.setLeftComponent(panel);
@@ -117,6 +114,13 @@ public class MainWindow {
 		JButton btnFileHistoryStatisics = new JButton("File History Statisics");
 		panel.add(btnFileHistoryStatisics, "cell 1 21");
 		frmTextAnalyzer.getContentPane().add(splitPane);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		splitPane.setRightComponent(scrollPane);
+		
+		JTextArea textArea = new JTextArea();
+		textArea.setEditable(false);
+		scrollPane.setViewportView(textArea);
 		
 		JMenuBar menuBar = new JMenuBar();
 		frmTextAnalyzer.setJMenuBar(menuBar);
