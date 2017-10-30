@@ -1,6 +1,8 @@
 package cse360groupproject;
 
 import java.awt.EventQueue;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 import java.awt.BorderLayout;
@@ -12,6 +14,7 @@ import javax.swing.JLabel;
 public class FileSummary {
 
 	private JFrame frame;
+	private static JFrame mainFrame;
 
 	/**
 	 * Launch the application.
@@ -20,7 +23,7 @@ public class FileSummary {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FileSummary window = new FileSummary();
+					FileSummary window = new FileSummary(mainFrame);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -32,7 +35,8 @@ public class FileSummary {
 	/**
 	 * Create the application.
 	 */
-	public FileSummary() {
+	public FileSummary(JFrame frame) {
+		mainFrame = frame;
 		initialize();
 	}
 
@@ -78,6 +82,12 @@ public class FileSummary {
 		
 		JPanel panel_2 = new JPanel();
 		splitPane.setRightComponent(panel_2);
+		
+		frame.addWindowListener(new WindowAdapter(){
+					public void windowClosing(WindowEvent e) {
+						mainFrame.setEnabled(true);
+					}
+				});
 	}
 
 }

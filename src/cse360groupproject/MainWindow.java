@@ -114,9 +114,9 @@ public class MainWindow {
 		JButton btnFileHistoryStatisics = new JButton("File History Statisics");
 		btnFileHistoryStatisics.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				FileSummary nw = new FileSummary();
+				FileSummary nw = new FileSummary(frmTextAnalyzer);
 				nw.NewFileSummary();
+				frmTextAnalyzer.setEnabled(false);
 			}
 		});
 		panel.add(btnFileHistoryStatisics, "cell 1 21");
@@ -162,9 +162,6 @@ public class MainWindow {
 			}
 		});
 		mnFile.add(mntmLoadFile);
-		
-		JMenuItem mntmFileHistory = new JMenuItem("File History");
-		mnFile.add(mntmFileHistory);
 		
 		JMenu mnHelp = new JMenu("Help");
 		menuBar.add(mnHelp);
