@@ -46,6 +46,7 @@ public class FileSummary {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setAlwaysOnTop(true);
+		frame.setTitle("File History");
 		frame.setBounds(100, 100, 574, 467);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
