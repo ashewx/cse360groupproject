@@ -76,34 +76,34 @@ public class MainWindow {
 		JLabel lbNumLines = new JLabel("Number of lines:");
 		panel.add(lbNumLines, "cell 1 2");
 		
-		JLabel numLines = new JLabel("null"); // TODO Make listener to change values upon loading new values
+		JLabel numLines = new JLabel(""); // TODO Make listener to change values upon loading new values
 		panel.add(numLines, "cell 4 2");
 		
 		JLabel lbNumberBlankLines = new JLabel("Number of blank lines:");
 		panel.add(lbNumberBlankLines, "cell 1 3");
 		
-		JLabel numBlank = new JLabel("null"); // TODO Make listener to change values upon loading new values
+		JLabel numBlank = new JLabel(""); // TODO Make listener to change values upon loading new values
 		panel.add(numBlank, "cell 4 3");
 		
 		JLabel lblNumOfSpaces = new JLabel("Number of spaces:");
 		panel.add(lblNumOfSpaces, "cell 1 4");
 		
-		JLabel numSpaces = new JLabel("null"); // TODO Make listener to change values upon loading new values
+		JLabel numSpaces = new JLabel(""); // TODO Make listener to change values upon loading new values
 		panel.add(numSpaces, "cell 4 4");
 		
-		JLabel numWords = new JLabel("null"); // TODO Make listener to change values upon loading new values
+		JLabel numWords = new JLabel(""); // TODO Make listener to change values upon loading new values
 		panel.add(numWords, "cell 4 5");
 		
 		JLabel lblNewLabel = new JLabel("Average characters per line:");
 		panel.add(lblNewLabel, "cell 1 6");
 		
-		JLabel avrgCharPerLine = new JLabel("null"); // TODO Make listener to change values upon loading new values
+		JLabel avrgCharPerLine = new JLabel(""); // TODO Make listener to change values upon loading new values
 		panel.add(avrgCharPerLine, "cell 4 6");
 		
 		JLabel lblAverageWordLength = new JLabel("Average Word Length:");
 		panel.add(lblAverageWordLength, "cell 1 7");
 		
-		JLabel avrgWordLength = new JLabel("null"); // TODO Make listener to change values upon loading new values
+		JLabel avrgWordLength = new JLabel(""); // TODO Make listener to change values upon loading new values
 		panel.add(avrgWordLength, "cell 4 7");
 		
 		JLabel lblMostCommonWords = new JLabel("Most common words:");
@@ -112,7 +112,7 @@ public class MainWindow {
 		JLabel lblNumberOfWords = new JLabel("Number of Words:");
 		panel.add(lblNumberOfWords, "cell 1 5");
 		
-		JLabel mostCmnWords = new JLabel("null"); // TODO Make listener to change values upon loading new values
+		JLabel mostCmnWords = new JLabel(""); // TODO Make listener to change values upon loading new values
 		panel.add(mostCmnWords, "cell 4 8");
 		
 		JButton btnFileHistoryStatisics = new JButton("File History Statisics");
