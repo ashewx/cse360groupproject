@@ -1,26 +1,27 @@
 package cse360groupproject;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import javax.swing.JSplitPane;
-import javax.swing.JTextPane;
 import javax.swing.JTextArea;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
-import java.awt.GridLayout;
-import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
+import javax.swing.JOptionPane;
+
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class MainWindow {
 
@@ -123,6 +124,27 @@ public class MainWindow {
 		menuBar.add(mnFile);
 		
 		JMenuItem mntmLoadFile = new JMenuItem("Load File");
+		mntmLoadFile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFileChooser chooser = new JFileChooser();
+				chooser.showOpenDialog(null);
+				File f = chooser.getSelectedFile();
+				String filename = f.getAbsolutePath();
+				
+				try
+				{
+					FileReader reader = new FileReader(filename);
+					BufferedReader br = new BufferedReader(reader);
+					textArea.read(br, null);
+					br.close();
+					textArea.requestFocus();
+				}
+				catch(Exception e)
+				{
+					JOptionPane.showMessageDialog(null, e);
+				}
+			}
+		});
 		mnFile.add(mntmLoadFile);
 		
 		JMenuItem mntmFileHistory = new JMenuItem("File History");
@@ -133,5 +155,5 @@ public class MainWindow {
 		
 		JMenuItem mntmUserGuide = new JMenuItem("User Guide");
 		mnHelp.add(mntmUserGuide);
-	}
+		}
 }
