@@ -72,34 +72,34 @@ public class MainWindow {
 		JLabel lbNumLines = new JLabel("Number of lines:");
 		panel.add(lbNumLines, "cell 1 2");
 		
-		JLabel numLines = new JLabel("null");
+		JLabel numLines = new JLabel("null"); // TODO Make listener to change values upon loading new values
 		panel.add(numLines, "cell 4 2");
 		
 		JLabel lbNumberBlankLines = new JLabel("Number of blank lines:");
 		panel.add(lbNumberBlankLines, "cell 1 3");
 		
-		JLabel numBlank = new JLabel("null");
+		JLabel numBlank = new JLabel("null"); // TODO Make listener to change values upon loading new values
 		panel.add(numBlank, "cell 4 3");
 		
 		JLabel lblNumOfSpaces = new JLabel("Number of spaces:");
 		panel.add(lblNumOfSpaces, "cell 1 4");
 		
-		JLabel numSpaces = new JLabel("null");
+		JLabel numSpaces = new JLabel("null"); // TODO Make listener to change values upon loading new values
 		panel.add(numSpaces, "cell 4 4");
 		
-		JLabel numWords = new JLabel("null");
+		JLabel numWords = new JLabel("null"); // TODO Make listener to change values upon loading new values
 		panel.add(numWords, "cell 4 5");
 		
 		JLabel lblNewLabel = new JLabel("Average characters per line:");
 		panel.add(lblNewLabel, "cell 1 6");
 		
-		JLabel avrgCharPerLine = new JLabel("null");
+		JLabel avrgCharPerLine = new JLabel("null"); // TODO Make listener to change values upon loading new values
 		panel.add(avrgCharPerLine, "cell 4 6");
 		
 		JLabel lblAverageWordLength = new JLabel("Average Word Length:");
 		panel.add(lblAverageWordLength, "cell 1 7");
 		
-		JLabel avrgWordLength = new JLabel("null");
+		JLabel avrgWordLength = new JLabel("null"); // TODO Make listener to change values upon loading new values
 		panel.add(avrgWordLength, "cell 4 7");
 		
 		JLabel lblMostCommonWords = new JLabel("Most common words:");
@@ -108,10 +108,17 @@ public class MainWindow {
 		JLabel lblNumberOfWords = new JLabel("Number of Words:");
 		panel.add(lblNumberOfWords, "cell 1 5");
 		
-		JLabel mostCmnWords = new JLabel("null");
+		JLabel mostCmnWords = new JLabel("null"); // TODO Make listener to change values upon loading new values
 		panel.add(mostCmnWords, "cell 4 8");
 		
 		JButton btnFileHistoryStatisics = new JButton("File History Statisics");
+		btnFileHistoryStatisics.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				FileSummary nw = new FileSummary();
+				nw.NewFileSummary();
+			}
+		});
 		panel.add(btnFileHistoryStatisics, "cell 1 21");
 		frmTextAnalyzer.getContentPane().add(splitPane);
 		
@@ -134,19 +141,23 @@ public class MainWindow {
 				JFileChooser chooser = new JFileChooser();
 				chooser.showOpenDialog(null);
 				File f = chooser.getSelectedFile();
-				String filename = f.getAbsolutePath();
 				
-				try
-				{
-					FileReader reader = new FileReader(filename);
-					BufferedReader br = new BufferedReader(reader);
-					textArea.read(br, null);
-					br.close();
-					textArea.requestFocus();
-				}
-				catch(Exception e)
-				{
-					JOptionPane.showMessageDialog(null, e);
+				if(f == null) {
+					System.out.println("No file selected!");
+				} else {
+					try
+					{
+						String filename = f.getAbsolutePath();
+						FileReader reader = new FileReader(filename);
+						BufferedReader br = new BufferedReader(reader);
+						textArea.read(br, null);
+						br.close();
+						textArea.requestFocus();
+					}
+					catch(Exception e)
+					{
+						JOptionPane.showMessageDialog(null, e);
+					}
 				}
 			}
 		});
