@@ -164,8 +164,10 @@ public class MainWindow {
 						String filename = f.getAbsolutePath();
 						FileReader reader = new FileReader(filename);
 						BufferedReader br = new BufferedReader(reader);
-						loadedFileName.setText(chooser.getSelectedFile().getName());
 						textArea.read(br, null);
+						loadedFileName.setText(chooser.getSelectedFile().getName());
+						TextFile file = new TextFile(chooser.getSelectedFile().getName(), textArea.getText());
+						numBlank.setText(Integer.toString(file.getBlankLn()));
 						br.close();
 						textArea.requestFocus();
 					}
