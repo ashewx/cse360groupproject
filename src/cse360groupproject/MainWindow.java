@@ -26,6 +26,15 @@ import javax.swing.JScrollPane;
 public class MainWindow {
 
 	private JFrame frmTextAnalyzer;
+	private JLabel loadedFileName;
+	private JLabel numLines;
+	private JLabel numBlank;
+	private JLabel numSpaces;
+	private JLabel numWords;
+	private JLabel avrgCharPerLine;
+	private JLabel avrgWordLength;
+	private JLabel mostCmnWords;
+	private JTextArea textArea;
 
 	/**
 	 * Launch the application.
@@ -70,40 +79,40 @@ public class MainWindow {
 		JLabel lblFileLoaded = new JLabel("File Loaded:");
 		panel.add(lblFileLoaded, "cell 1 0");
 		
-		JLabel loadedFileName = new JLabel("");
+		loadedFileName = new JLabel("");
 		panel.add(loadedFileName, "cell 4 0");
 		
 		JLabel lbNumLines = new JLabel("Number of lines:");
 		panel.add(lbNumLines, "cell 1 2");
 		
-		JLabel numLines = new JLabel(""); // TODO Make listener to change values upon loading new values
+		numLines = new JLabel(""); // TODO Make listener to change values upon loading new values
 		panel.add(numLines, "cell 4 2");
 		
 		JLabel lbNumberBlankLines = new JLabel("Number of blank lines:");
 		panel.add(lbNumberBlankLines, "cell 1 3");
 		
-		JLabel numBlank = new JLabel(""); // TODO Make listener to change values upon loading new values
+		numBlank = new JLabel(""); // TODO Make listener to change values upon loading new values
 		panel.add(numBlank, "cell 4 3");
 		
 		JLabel lblNumOfSpaces = new JLabel("Number of spaces:");
 		panel.add(lblNumOfSpaces, "cell 1 4");
 		
-		JLabel numSpaces = new JLabel(""); // TODO Make listener to change values upon loading new values
+		numSpaces = new JLabel(""); // TODO Make listener to change values upon loading new values
 		panel.add(numSpaces, "cell 4 4");
 		
-		JLabel numWords = new JLabel(""); // TODO Make listener to change values upon loading new values
+		numWords = new JLabel(""); // TODO Make listener to change values upon loading new values
 		panel.add(numWords, "cell 4 5");
 		
 		JLabel lblNewLabel = new JLabel("Average characters per line:");
 		panel.add(lblNewLabel, "cell 1 6");
 		
-		JLabel avrgCharPerLine = new JLabel(""); // TODO Make listener to change values upon loading new values
+		avrgCharPerLine = new JLabel(""); // TODO Make listener to change values upon loading new values
 		panel.add(avrgCharPerLine, "cell 4 6");
 		
 		JLabel lblAverageWordLength = new JLabel("Average Word Length:");
 		panel.add(lblAverageWordLength, "cell 1 7");
 		
-		JLabel avrgWordLength = new JLabel(""); // TODO Make listener to change values upon loading new values
+		avrgWordLength = new JLabel(""); // TODO Make listener to change values upon loading new values
 		panel.add(avrgWordLength, "cell 4 7");
 		
 		JLabel lblMostCommonWords = new JLabel("Most common words:");
@@ -112,7 +121,7 @@ public class MainWindow {
 		JLabel lblNumberOfWords = new JLabel("Number of Words:");
 		panel.add(lblNumberOfWords, "cell 1 5");
 		
-		JLabel mostCmnWords = new JLabel(""); // TODO Make listener to change values upon loading new values
+		mostCmnWords = new JLabel(""); // TODO Make listener to change values upon loading new values
 		panel.add(mostCmnWords, "cell 4 8");
 		
 		JButton btnFileHistoryStatisics = new JButton("File History Statisics");
@@ -129,7 +138,7 @@ public class MainWindow {
 		JScrollPane scrollPane = new JScrollPane();
 		splitPane.setRightComponent(scrollPane);
 		
-		JTextArea textArea = new JTextArea();
+		textArea = new JTextArea();
 		textArea.setEditable(false);
 		scrollPane.setViewportView(textArea);
 		
@@ -165,9 +174,8 @@ public class MainWindow {
 						FileReader reader = new FileReader(filename);
 						BufferedReader br = new BufferedReader(reader);
 						textArea.read(br, null);
-						loadedFileName.setText(chooser.getSelectedFile().getName());
 						TextFile file = new TextFile(chooser.getSelectedFile().getName(), textArea.getText());
-						numBlank.setText(Integer.toString(file.getBlankLn()));
+						refresh(file);
 						br.close();
 						textArea.requestFocus();
 					}
@@ -186,4 +194,15 @@ public class MainWindow {
 		JMenuItem mntmUserGuide = new JMenuItem("User Guide");
 		mnHelp.add(mntmUserGuide);
 		}
+	
+	public void refresh(TextFile file) {
+		textArea.setText(file.getInput());
+		loadedFileName.setText(file.getName());
+		numLines.setText(Integer.toString(file.getNumLines()));
+		numBlank.setText(Integer.toString(file.getBlankLn()));
+		numSpaces.setText(Integer.toString(file.getNumSpaces()));
+		numWords.setText(Integer.toString(file.getNumWords()));
+		avrgCharPerLine.setText(Integer.toString(file.getAvgCharPerLn()));
+		avrgWordLength.setText(Integer.toString(file.getAvgWrdLen()));
+	}
 }
