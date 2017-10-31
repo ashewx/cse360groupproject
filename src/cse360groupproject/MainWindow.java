@@ -109,7 +109,7 @@ public class MainWindow {
 		avrgCharPerLine = new JLabel(""); // TODO Make listener to change values upon loading new values
 		panel.add(avrgCharPerLine, "cell 4 6");
 		
-		JLabel lblAverageWordLength = new JLabel("Average Word Length:");
+		JLabel lblAverageWordLength = new JLabel("Average word length:");
 		panel.add(lblAverageWordLength, "cell 1 7");
 		
 		avrgWordLength = new JLabel(""); // TODO Make listener to change values upon loading new values
@@ -118,7 +118,7 @@ public class MainWindow {
 		JLabel lblMostCommonWords = new JLabel("Most common words:");
 		panel.add(lblMostCommonWords, "cell 1 8");
 		
-		JLabel lblNumberOfWords = new JLabel("Number of Words:");
+		JLabel lblNumberOfWords = new JLabel("Number of words:");
 		panel.add(lblNumberOfWords, "cell 1 5");
 		
 		mostCmnWords = new JLabel(""); // TODO Make listener to change values upon loading new values
