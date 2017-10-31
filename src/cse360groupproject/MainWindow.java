@@ -195,6 +195,7 @@ public class MainWindow {
 		mnHelp.add(mntmUserGuide);
 		}
 	
+	// Refreshes the whole window when loading a new TextFile
 	public void refresh(TextFile file) {
 		textArea.setText(file.getInput());
 		loadedFileName.setText(file.getName());
