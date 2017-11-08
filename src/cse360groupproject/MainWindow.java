@@ -192,6 +192,11 @@ public class MainWindow {
 		menuBar.add(mnHelp);
 		
 		JMenuItem mntmUserGuide = new JMenuItem("User Guide");
+		mntmUserGuide.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
 		mnHelp.add(mntmUserGuide);
 		}
 	
