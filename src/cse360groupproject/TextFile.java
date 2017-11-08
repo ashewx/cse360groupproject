@@ -51,6 +51,30 @@ public class TextFile {
 		return input;
 	}
 
+	public int getNumLines() {
+		return numLines;
+	}
+
+	public int getBlankLn() {
+		return blankLn;
+	}
+
+	public int getNumSpaces() {
+		return numSpaces;
+	}
+
+	public int getNumWords() {
+		return numWords;
+	}
+
+	public int getAvgCharPerLn() {
+		return avgCharPerLn;
+	}
+
+	public int getAvgWrdLen() {
+		return avgWrdLen;
+	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
