@@ -21,12 +21,14 @@ public class TextFile {
 	public TextFile(String name, String input) throws IOException {
 		this.name = name;
 		this.input = input;
+		
 		// Date created
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date date = new Date();
 		this.date = dateFormat.format(date);
-		this.blankLn = calcBlank(input);
 		
+		// Calculations go here
+		this.blankLn = calcBlank(input);
 	}
 	
 	public int calcBlank(String input) throws IOException {

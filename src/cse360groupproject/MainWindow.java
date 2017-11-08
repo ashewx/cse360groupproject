@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -25,6 +26,7 @@ import javax.swing.JScrollPane;
 
 public class MainWindow {
 
+	private static MainWindow window;
 	private JFrame frmTextAnalyzer;
 	private JLabel loadedFileName;
 	private JLabel numLines;
@@ -35,6 +37,7 @@ public class MainWindow {
 	private JLabel avrgWordLength;
 	private JLabel mostCmnWords;
 	private JTextArea textArea;
+	private ArrayList<TextFile> fileHistory = new ArrayList<TextFile>();
 
 	/**
 	 * Launch the application.
@@ -43,7 +46,7 @@ public class MainWindow {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainWindow window = new MainWindow();
+					window = new MainWindow();
 					window.frmTextAnalyzer.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -127,7 +130,7 @@ public class MainWindow {
 		JButton btnFileHistoryStatisics = new JButton("File History Statisics");
 		btnFileHistoryStatisics.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				FileSummary nw = new FileSummary(frmTextAnalyzer);
+				FileSummary nw = new FileSummary(frmTextAnalyzer, window);
 				nw.NewFileSummary();
 				frmTextAnalyzer.setEnabled(false);
 			}
@@ -175,6 +178,7 @@ public class MainWindow {
 						BufferedReader br = new BufferedReader(reader);
 						textArea.read(br, null);
 						TextFile file = new TextFile(chooser.getSelectedFile().getName(), textArea.getText());
+						fileHistory.add(0, file); // Adds to file history at the start of list to organize for newest first
 						refresh(file);
 						br.close();
 						textArea.requestFocus();
@@ -210,5 +214,10 @@ public class MainWindow {
 		numWords.setText(Integer.toString(file.getNumWords()));
 		avrgCharPerLine.setText(Integer.toString(file.getAvgCharPerLn()));
 		avrgWordLength.setText(Integer.toString(file.getAvgWrdLen()));
+		textArea.setCaretPosition(0);
+	}
+
+	public ArrayList<TextFile> getFileHistory() {
+		return fileHistory;
 	}
 }
