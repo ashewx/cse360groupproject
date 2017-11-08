@@ -37,7 +37,7 @@ public class MainWindow {
 	private JLabel avrgWordLength;
 	private JLabel mostCmnWords;
 	private JTextArea textArea;
-	private ArrayList<TextFile> fileHistory = new ArrayList<TextFile>();
+	private ArrayList<TextFile> fileHistory = new ArrayList<TextFile>(); // Holds all files that were loaded
 
 	/**
 	 * Launch the application.

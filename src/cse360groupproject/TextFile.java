@@ -51,60 +51,12 @@ public class TextFile {
 		return input;
 	}
 
-	public int getNumLines() {
-		return numLines;
-	}
-
-	public int getBlankLn() {
-		return blankLn;
-	}
-
-	public int getNumSpaces() {
-		return numSpaces;
-	}
-
-	public int getNumWords() {
-		return numWords;
-	}
-
-	public int getAvgCharPerLn() {
-		return avgCharPerLn;
-	}
-
-	public int getAvgWrdLen() {
-		return avgWrdLen;
-	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
 
 	public void setInput(String input) {
 		this.input = input;
-	}
-
-	public void setNumLines(int numLines) {
-		this.numLines = numLines;
-	}
-
-	public void setBlankLn(int blankLn) {
-		this.blankLn = blankLn;
-	}
-
-	public void setNumSpaces(int numSpaces) {
-		this.numSpaces = numSpaces;
-	}
-
-	public void setNumWords(int numWords) {
-		this.numWords = numWords;
-	}
-
-	public void setAvgCharPerLn(int avgCharPerLn) {
-		this.avgCharPerLn = avgCharPerLn;
-	}
-
-	public void setAvgWrdLen(int avgWrdLen) {
-		this.avgWrdLen = avgWrdLen;
 	}
 
 	public String getDate() {

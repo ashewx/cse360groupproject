@@ -161,11 +161,10 @@ public class FileSummary {
 		
 		btnLoadFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				int select = histTable.getSelectedRow();
-				System.out.println(select);
+				int select = histTable.getSelectedRow(); // Get selected file by index
 				if(select >= 0) {
-					mWindow.refresh(mWindow.getFileHistory().get(select));
-					frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+					mWindow.refresh(mWindow.getFileHistory().get(select)); // Refresh text area of MainWindow
+					frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING)); // Close window
 				}
 			}
 		});
