@@ -168,6 +168,7 @@ public class MainWindow {
 						loadedFileName.setText(chooser.getSelectedFile().getName());
 						TextFile file = new TextFile(chooser.getSelectedFile().getName(), textArea.getText());
 						numBlank.setText(Integer.toString(file.getBlankLn()));
+						numLines.setText(Integer.toString(file.getNumLines()));
 						br.close();
 						textArea.requestFocus();
 					}

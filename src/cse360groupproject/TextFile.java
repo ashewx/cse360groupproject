@@ -18,6 +18,10 @@ public class TextFile {
 		this.name = name;
 		this.input = input;
 		this.blankLn = calcBlank(input);
+		this.numLines = lineCount(input);
+		this.numSpaces = getNumSpaces(input);
+		this.numWords = getNumWords(input);
+		this.avgCharPerLn = getAvgCharPerLn(input);
 		
 	}
 	
@@ -49,15 +53,33 @@ public class TextFile {
 		return blankLn;
 	}
 
-	public int getNumSpaces() {
-		return numSpaces;
+	public int getNumSpaces(String input) {
+		
+		int count = 0;
+		for (char c : input.toCharArray()) {
+		    if (c == ' ') {
+		         count++;
+		    }
+		}
+		return count;
 	}
 
-	public int getNumWords() {
-		return numWords;
+	public int getNumWords(String input) {
+		
+		if (input == null || input.isEmpty()) 
+		{ 
+			return 0; 
+			} 
+		String[] words = input.split("\\s+"); 
+		return words.length;
 	}
 
-	public int getAvgCharPerLn() {
+	public int getAvgCharPerLn(String input) {
+		
+		int length = input.length();
+		length = length - numSpaces;
+		length = length/numLines;
+		avgCharPerLn = length;
 		return avgCharPerLn;
 	}
 
@@ -98,20 +120,13 @@ public class TextFile {
 	}
 	
 	
-	public void LineCount(String filepath) throws FileNotFoundException
+	public int lineCount(String filepath) throws IOException
 	{
-		
-		
-		File aFile = new File("/Users/jordanlewis/Documents/workspace/FileReader/TestCases/Test_1.txt");
-		Scanner freader = new Scanner(aFile);
-		while (freader.hasNextLine()) 
-		{
-			  numLines++;
-			  freader.nextLine();
-		}
-		numLines = numLines -7;
-		System.out.println(numLines);
-		
+		BufferedReader reader = new BufferedReader(new StringReader(input));
+		int lines = 0;
+		while (reader.readLine() != null) lines++;
+		reader.close();
+		return lines;
 	}
 	
 
