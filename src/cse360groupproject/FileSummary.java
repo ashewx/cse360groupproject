@@ -15,6 +15,12 @@ public class FileSummary {
 
 	private JFrame frame;
 	private JFrame mainFrame;
+	private JLabel avgNumLines;
+	private JLabel avgNumBlankLn;
+	private JLabel avgNumSpaces;
+	private JLabel avgCharPerLn;
+	private JLabel avgWordLength;
+	private JLabel mstCommonWord;
 
 	/**
 	 * Launch the application.
@@ -66,37 +72,37 @@ public class FileSummary {
 		JLabel lblAverageNumberOf = new JLabel("Average number of lines:");
 		panel_1.add(lblAverageNumberOf, "cell 0 1");
 		
-		JLabel avgNumLines = new JLabel(""); //TODO Add values from calculations
+		avgNumLines = new JLabel(""); //TODO Add values from calculations
 		panel_1.add(avgNumLines, "cell 2 1");
 		
 		JLabel lblAverageNumberOf_1 = new JLabel("Average number of blank lines:");
 		panel_1.add(lblAverageNumberOf_1, "cell 0 2");
 		
-		JLabel avgNumBlankLn = new JLabel(""); //TODO Add values from calculations
+		avgNumBlankLn = new JLabel(""); //TODO Add values from calculations
 		panel_1.add(avgNumBlankLn, "cell 2 2");
 		
 		JLabel lblAverageNumberOf_2 = new JLabel("Average number of spaces:");
 		panel_1.add(lblAverageNumberOf_2, "cell 0 3");
 		
-		JLabel avgNumSpaces = new JLabel(""); //TODO Add values from calculations
+		avgNumSpaces = new JLabel(""); //TODO Add values from calculations
 		panel_1.add(avgNumSpaces, "cell 3 3");
 		
 		JLabel lblAverageCharactersPer = new JLabel("Average characters per line:");
 		panel_1.add(lblAverageCharactersPer, "cell 0 4");
 		
-		JLabel avgCharPerLn = new JLabel(""); //TODO Add values from calculations
+		avgCharPerLn = new JLabel(""); //TODO Add values from calculations
 		panel_1.add(avgCharPerLn, "cell 3 4");
 		
 		JLabel lblAverageWordLength = new JLabel("Average word length:");
 		panel_1.add(lblAverageWordLength, "cell 0 5");
 		
-		JLabel avgWordLength = new JLabel(""); //TODO Add values from calculations
+		avgWordLength = new JLabel(""); //TODO Add values from calculations
 		panel_1.add(avgWordLength, "cell 3 5");
 		
 		JLabel lblMostCommonWords = new JLabel("Most common words:");
 		panel_1.add(lblMostCommonWords, "cell 0 6");
 		
-		JLabel mstCommonWord = new JLabel(""); //TODO Add values from calculations
+		mstCommonWord = new JLabel(""); //TODO Add values from calculations
 		panel_1.add(mstCommonWord, "cell 3 6,aligny top");
 		
 		JPanel panel_2 = new JPanel();

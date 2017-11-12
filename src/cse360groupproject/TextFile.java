@@ -3,10 +3,14 @@ package cse360groupproject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class TextFile {
 	private String name;
 	private String input;
+	private String date;
 	private int numLines;
 	private int blankLn;
 	private int numSpaces;
@@ -17,6 +21,10 @@ public class TextFile {
 	public TextFile(String name, String input) throws IOException {
 		this.name = name;
 		this.input = input;
+		// Date created
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date date = new Date();
+		this.date = dateFormat.format(date);
 		this.blankLn = calcBlank(input);
 		this.numLines = lineCount(input);
 		this.numSpaces = getNumSpaces(input);
@@ -129,5 +137,13 @@ public class TextFile {
 		return lines;
 	}
 	
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
 
 }
