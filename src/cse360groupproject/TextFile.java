@@ -26,6 +26,10 @@ public class TextFile {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date date = new Date();
 		this.date = dateFormat.format(date);
+		this.numLines = lineCount(input);
+		this.numSpaces = getNumSpaces(input);
+		this.numWords = getNumWords(input);
+		this.avgCharPerLn = getAvgCharPerLn(input);
 		
 		// Calculations go here
 		this.blankLn = calcBlank(input);
@@ -59,15 +63,33 @@ public class TextFile {
 		return blankLn;
 	}
 
-	public int getNumSpaces() {
-		return numSpaces;
+	public int getNumSpaces(String input) {
+		
+		int count = 0;
+		for (char c : input.toCharArray()) {
+		    if (c == ' ') {
+		         count++;
+		    }
+		}
+		return count;
 	}
 
-	public int getNumWords() {
-		return numWords;
+	public int getNumWords(String input) {
+		
+		if (input == null || input.isEmpty()) 
+		{ 
+			return 0; 
+			} 
+		String[] words = input.split("\\s+"); 
+		return words.length;
 	}
 
-	public int getAvgCharPerLn() {
+	public int getAvgCharPerLn(String input) {
+		
+		int length = input.length();
+		length = length - numSpaces;
+		length = length/numLines;
+		avgCharPerLn = length;
 		return avgCharPerLn;
 	}
 
@@ -83,6 +105,17 @@ public class TextFile {
 		this.input = input;
 	}
 
+	
+	
+	public int lineCount(String filepath) throws IOException
+	{
+		BufferedReader reader = new BufferedReader(new StringReader(input));
+		int lines = 0;
+		while (reader.readLine() != null) lines++;
+		reader.close();
+		return lines;
+	}
+	
 	public String getDate() {
 		return date;
 	}
