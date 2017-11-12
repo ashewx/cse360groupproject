@@ -179,11 +179,7 @@ public class MainWindow {
 						textArea.read(br, null);
 						TextFile file = new TextFile(chooser.getSelectedFile().getName(), textArea.getText());
 						fileHistory.add(0, file); // Adds to file history at the start of list to organize for newest first
-						numBlank.setText(Integer.toString(file.getBlankLn()));
-						numLines.setText(Integer.toString(file.getNumLines()));
-=======
 						refresh(file);
->>>>>>> 1b99fdba777842befe880ada87b11af7e56ccafd
 						br.close();
 						textArea.requestFocus();
 					}

@@ -26,13 +26,14 @@ public class TextFile {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date date = new Date();
 		this.date = dateFormat.format(date);
-		this.numLines = lineCount(input);
-		this.numSpaces = getNumSpaces(input);
-		this.numWords = getNumWords(input);
-		this.avgCharPerLn = getAvgCharPerLn(input);
 		
 		// Calculations go here
 		this.blankLn = calcBlank(input);
+		this.numLines = lineCount(input);
+		this.numSpaces = calcNumSpaces(input);
+		
+		this.numWords = calcNumWords(input);
+		this.avgCharPerLn = calcAvgCharPerLn(input);
 	}
 	
 	public int calcBlank(String input) throws IOException {
@@ -63,33 +64,16 @@ public class TextFile {
 		return blankLn;
 	}
 
-	public int getNumSpaces(String input) {
-		
-		int count = 0;
-		for (char c : input.toCharArray()) {
-		    if (c == ' ') {
-		         count++;
-		    }
-		}
-		return count;
+	
+	public int getNumSpaces() {
+		return numSpaces;
 	}
-
-	public int getNumWords(String input) {
-		
-		if (input == null || input.isEmpty()) 
-		{ 
-			return 0; 
-			} 
-		String[] words = input.split("\\s+"); 
-		return words.length;
+	
+	public int getNumWords() {
+		return numWords;
 	}
-
-	public int getAvgCharPerLn(String input) {
-		
-		int length = input.length();
-		length = length - numSpaces;
-		length = length/numLines;
-		avgCharPerLn = length;
+	
+	public int getAvgCharPerLn() {
 		return avgCharPerLn;
 	}
 
@@ -105,7 +89,31 @@ public class TextFile {
 		this.input = input;
 	}
 
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
 	
+	public int calcAvgCharPerLn(String input) {
+		
+		int length = input.length();
+		length = length - numSpaces;
+		length = length/numLines;
+		return length;
+	}
+	
+	public int calcNumWords(String input) {
+		
+		if (input == null || input.isEmpty()) 
+		{ 
+			return 0; 
+			} 
+		String[] words = input.split("\\s+"); 
+		return words.length;
+	}
 	
 	public int lineCount(String filepath) throws IOException
 	{
@@ -116,12 +124,15 @@ public class TextFile {
 		return lines;
 	}
 	
-	public String getDate() {
-		return date;
-	}
-
-	public void setDate(String date) {
-		this.date = date;
+	public int calcNumSpaces(String input) {
+		
+		int count = 0;
+		for (char c : input.toCharArray()) {
+		    if (c == ' ') {
+		         count++;
+		    }
+		}
+		return count;
 	}
 
 }
