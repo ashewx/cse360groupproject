@@ -29,6 +29,11 @@ public class TextFile {
 		
 		// Calculations go here
 		this.blankLn = calcBlank(input);
+		this.numLines = lineCount(input);
+		this.numSpaces = calcNumSpaces(input);
+		
+		this.numWords = calcNumWords(input);
+		this.avgCharPerLn = calcAvgCharPerLn(input);
 	}
 	
 	public int calcBlank(String input) throws IOException {
@@ -59,14 +64,15 @@ public class TextFile {
 		return blankLn;
 	}
 
+	
 	public int getNumSpaces() {
 		return numSpaces;
 	}
-
+	
 	public int getNumWords() {
 		return numWords;
 	}
-
+	
 	public int getAvgCharPerLn() {
 		return avgCharPerLn;
 	}
@@ -89,6 +95,44 @@ public class TextFile {
 
 	public void setDate(String date) {
 		this.date = date;
+	}
+	
+	public int calcAvgCharPerLn(String input) {
+		
+		int length = input.length();
+		length = length - numSpaces;
+		length = length/numLines;
+		return length;
+	}
+	
+	public int calcNumWords(String input) {
+		
+		if (input == null || input.isEmpty()) 
+		{ 
+			return 0; 
+			} 
+		String[] words = input.split("\\s+"); 
+		return words.length;
+	}
+	
+	public int lineCount(String filepath) throws IOException
+	{
+		BufferedReader reader = new BufferedReader(new StringReader(input));
+		int lines = 0;
+		while (reader.readLine() != null) lines++;
+		reader.close();
+		return lines;
+	}
+	
+	public int calcNumSpaces(String input) {
+		
+		int count = 0;
+		for (char c : input.toCharArray()) {
+		    if (c == ' ') {
+		         count++;
+		    }
+		}
+		return count;
 	}
 
 }
