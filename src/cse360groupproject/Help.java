@@ -1,22 +1,25 @@
 package cse360groupproject;
 
 import java.awt.EventQueue;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 
 public class Help {
 
-	private JFrame frame;
+	private JFrame frmHelp;
+	private JFrame mainFrame;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public void NewHelp() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Help window = new Help();
-					window.frame.setVisible(true);
+					Help window = new Help(mainFrame);
+					window.frmHelp.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -27,7 +30,8 @@ public class Help {
 	/**
 	 * Create the application.
 	 */
-	public Help() {
+	public Help(JFrame frame) {
+		mainFrame = frame;
 		initialize();
 	}
 
@@ -35,9 +39,17 @@ public class Help {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmHelp = new JFrame();
+		frmHelp.setTitle("Help");
+		frmHelp.setAlwaysOnTop(true);
+		frmHelp.setBounds(100, 100, 450, 300);
+		frmHelp.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		
+		frmHelp.addWindowListener(new WindowAdapter(){
+			public void windowClosing(WindowEvent e) {
+				mainFrame.setEnabled(true);
+			}
+		});
 	}
 
 }

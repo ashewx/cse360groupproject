@@ -198,7 +198,9 @@ public class MainWindow {
 		JMenuItem mntmUserGuide = new JMenuItem("User Guide");
 		mntmUserGuide.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				Help nw = new Help(frmTextAnalyzer);
+				nw.NewHelp();
+				frmTextAnalyzer.setEnabled(false);
 			}
 		});
 		mnHelp.add(mntmUserGuide);
