@@ -5,6 +5,11 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import org.icepdf.ri.common.SwingController;
+import org.icepdf.ri.common.SwingViewBuilder;
+
 
 public class Help {
 
@@ -29,6 +34,7 @@ public class Help {
 
 	/**
 	 * Create the application.
+	 * @throws Exception 
 	 */
 	public Help(JFrame frame) {
 		mainFrame = frame;
@@ -42,7 +48,20 @@ public class Help {
 		frmHelp = new JFrame();
 		frmHelp.setTitle("Help");
 		frmHelp.setAlwaysOnTop(true);
-		frmHelp.setBounds(100, 100, 450, 300);
+		
+		// Set up PDF controller
+		SwingController controller = new SwingController(); 
+		SwingViewBuilder factory = new SwingViewBuilder(controller); 
+		JPanel viewerComponentPanel = factory.buildViewerPanel(); 
+		controller.getDocumentViewController().setAnnotationCallback( 
+				new org.icepdf.ri.common.MyAnnotationCallback( 
+						controller.getDocumentViewController())); 
+		
+		// Add PDF controller to JFrame
+		frmHelp.add(viewerComponentPanel); 
+		controller.openDocument("Help.pdf"); 
+		frmHelp.pack(); 
+		
 		frmHelp.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		frmHelp.addWindowListener(new WindowAdapter(){
