@@ -29,6 +29,9 @@ public class FileSummary {
 	private JLabel avgCharPerLn;
 	private JLabel avgWordLength;
 	private JTable histTable;
+	private JLabel topWord1;
+	private JLabel topWord2;
+	private JLabel topWord3;
 
 	/**
 	 * Launch the application.
@@ -115,19 +118,19 @@ public class FileSummary {
 		JLabel topLb1 = new JLabel("1)");
 		panel_1.add(topLb1, "cell 1 6");
 		
-		JLabel topWord1 = new JLabel("");
+		topWord1 = new JLabel("");
 		panel_1.add(topWord1, "cell 2 6");
 		
 		JLabel topLb2 = new JLabel("2)");
 		panel_1.add(topLb2, "cell 1 7");
 		
-		JLabel topWord2 = new JLabel("");
+		topWord2 = new JLabel("");
 		panel_1.add(topWord2, "cell 2 7");
 		
 		JLabel topLb3 = new JLabel("3)");
 		panel_1.add(topLb3, "cell 1 8");
 		
-		JLabel topWord3 = new JLabel("");
+		topWord3 = new JLabel("");
 		panel_1.add(topWord3, "cell 2 8");
 		
 		JButton btnLoadFile = new JButton("Load File");

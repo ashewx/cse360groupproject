@@ -36,7 +36,11 @@ public class MainWindow {
 	private JLabel avrgCharPerLine;
 	private JLabel avrgWordLength;
 	private JTextArea textArea;
+	private JLabel topWord1;
+	private JLabel topWord2;
+	private JLabel topWord3;
 	private ArrayList<TextFile> fileHistory = new ArrayList<TextFile>(); // Holds all files that were loaded
+	
 
 	/**
 	 * Launch the application.
@@ -87,34 +91,34 @@ public class MainWindow {
 		JLabel lbNumLines = new JLabel("Number of lines:");
 		panel.add(lbNumLines, "cell 1 2");
 		
-		numLines = new JLabel(""); // TODO Make listener to change values upon loading new values
+		numLines = new JLabel("");
 		panel.add(numLines, "cell 7 2");
 		
 		JLabel lbNumberBlankLines = new JLabel("Number of blank lines:");
 		panel.add(lbNumberBlankLines, "cell 1 3");
 		
-		numBlank = new JLabel(""); // TODO Make listener to change values upon loading new values
+		numBlank = new JLabel("");
 		panel.add(numBlank, "cell 7 3");
 		
 		JLabel lblNumOfSpaces = new JLabel("Number of spaces:");
 		panel.add(lblNumOfSpaces, "cell 1 4");
 		
-		numSpaces = new JLabel(""); // TODO Make listener to change values upon loading new values
+		numSpaces = new JLabel("");
 		panel.add(numSpaces, "cell 7 4");
 		
-		numWords = new JLabel(""); // TODO Make listener to change values upon loading new values
+		numWords = new JLabel("");
 		panel.add(numWords, "cell 7 5");
 		
 		JLabel lblNewLabel = new JLabel("Average characters per line:");
 		panel.add(lblNewLabel, "cell 1 6");
 		
-		avrgCharPerLine = new JLabel(""); // TODO Make listener to change values upon loading new values
+		avrgCharPerLine = new JLabel("");
 		panel.add(avrgCharPerLine, "cell 7 6");
 		
 		JLabel lblAverageWordLength = new JLabel("Average word length:");
 		panel.add(lblAverageWordLength, "cell 1 7");
 		
-		avrgWordLength = new JLabel(""); // TODO Make listener to change values upon loading new values
+		avrgWordLength = new JLabel("");
 		panel.add(avrgWordLength, "cell 7 7");
 		
 		JLabel lblMostCommonWords = new JLabel("Most common words:");
@@ -126,19 +130,19 @@ public class MainWindow {
 		JLabel topLb1 = new JLabel("1)");
 		panel.add(topLb1, "cell 2 8");
 		
-		JLabel topWord1 = new JLabel("");
+		topWord1 = new JLabel("");
 		panel.add(topWord1, "cell 3 8");
 		
 		JLabel topLb2 = new JLabel("2)");
 		panel.add(topLb2, "cell 2 9");
 		
-		JLabel topWord2 = new JLabel("");
+		topWord2 = new JLabel("");
 		panel.add(topWord2, "cell 3 9");
 		
 		JLabel topLb3 = new JLabel("3)");
 		panel.add(topLb3, "cell 2 10");
 		
-		JLabel topWord3 = new JLabel("");
+		topWord3 = new JLabel("");
 		panel.add(topWord3, "cell 3 10");
 		
 		JButton btnFileHistoryStatisics = new JButton("File History Statisics");
@@ -231,6 +235,11 @@ public class MainWindow {
 		avrgCharPerLine.setText(Integer.toString(file.getAvgCharPerLn()));
 		avrgWordLength.setText(Integer.toString(file.getAvgWrdLen()));
 		textArea.setCaretPosition(0);
+		
+		// TODO: Get the top 3 words
+		topWord1.setText("TODO");
+		topWord2.setText("TODO");
+		topWord3.setText("TODO");
 	}
 
 	public ArrayList<TextFile> getFileHistory() {
