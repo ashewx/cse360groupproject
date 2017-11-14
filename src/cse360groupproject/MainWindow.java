@@ -237,9 +237,15 @@ public class MainWindow {
 		avrgWordLength.setText(Integer.toString(file.getAvgWrdLen()));
 		textArea.setCaretPosition(0);
 		
-		topWord1.setText((String) file.getWordOccurrence().keySet().toArray()[0]);
-		topWord2.setText((String) file.getWordOccurrence().keySet().toArray()[1]);
-		topWord3.setText((String) file.getWordOccurrence().keySet().toArray()[2]);
+		try {
+			topWord1.setText((String) file.getWordOccurrence().keySet().toArray()[0]);
+			topWord2.setText((String) file.getWordOccurrence().keySet().toArray()[1]);
+			topWord3.setText((String) file.getWordOccurrence().keySet().toArray()[2]);
+		} catch(ArrayIndexOutOfBoundsException e) {
+			// Do nothing: Not enough words in array
+		} catch (NullPointerException e) {
+			// Do nothing: No words
+		}
 	}
 
 	public ArrayList<TextFile> getFileHistory() {

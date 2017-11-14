@@ -3,8 +3,6 @@ package cse360groupproject;
 import java.awt.EventQueue;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.ArrayList;
-
 import javax.swing.JFrame;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
@@ -191,16 +189,26 @@ public class FileSummary {
 	
 	// Refreshes the whole window when loading a new TextFile
 		public void refresh() {
-			avgNumLines.setText("TODO");
-			avgNumBlankLn.setText("TODO");
-			avgNumSpaces.setText("TODO");
-			avgCharPerLn.setText("TODO");
-			avgWordLength.setText("TODO");
+			AllFiles stats = new AllFiles(mWindow.getFileHistory());
+			avgNumLines.setText(Integer.toString(stats.getAvgNumLine()));
+			avgNumBlankLn.setText(Integer.toString(stats.getAvgNumBlank()));
+			avgNumSpaces.setText(Integer.toString(stats.getAvgNumSpaces()));
+			avgCharPerLn.setText(Integer.toString(stats.getAvgCharLine()));
+			avgWordLength.setText(Integer.toString(stats.getAvgWordLen()));
 			
 			// TODO: Get the top 3 words
-			topWord1.setText("TODO");
-			topWord2.setText("TODO");
-			topWord3.setText("TODO");
+			try {
+				topWord1.setText((String) stats.getWordOccurrence().keySet().toArray()[0]);
+				topWord2.setText((String) stats.getWordOccurrence().keySet().toArray()[1]);
+				topWord3.setText((String) stats.getWordOccurrence().keySet().toArray()[2]);
+			} catch (NullPointerException e) {
+				// Do nothing: No words
+				topWord1.setText("TODO");
+				topWord2.setText("TODO");
+				topWord3.setText("TODO");
+			} catch(ArrayIndexOutOfBoundsException e) {
+				// Do nothing: Not enough words in array
+			}
 		}
 
 }
