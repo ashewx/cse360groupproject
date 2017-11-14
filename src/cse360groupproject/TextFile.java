@@ -5,8 +5,14 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 public class TextFile {
@@ -19,7 +25,7 @@ public class TextFile {
 	private int numWords;
 	private int avgCharPerLn;
 	private int avgWrdLen;
-	private HashMap<String, Integer> wordOccurrence;
+	private Map<String, Integer> wordOccurrence;
 	
 	public TextFile(String name, String input) throws IOException {
 		this.name = name;
@@ -37,19 +43,7 @@ public class TextFile {
 		this.numWords = calcNumWords(input);
 		this.avgCharPerLn = calcAvgCharPerLn(input);
 		this.avgWrdLen = calcAvgWordLen(input);
-		this.wordOccurrence = initOccurrences(input);
-	}
-	
-	public int calcBlank(String input) throws IOException {
-		BufferedReader br = new BufferedReader(new StringReader(input));
-		String line;
-		int empty = 0;
-		while ((line = br.readLine()) != null) {
-		  if (line.trim().isEmpty()) {
-		    empty++;
-		  }
-		}
-		return empty;
+		this.wordOccurrence = calcOccurrences(input);
 	}
 	
 	public String getName() {
@@ -85,12 +79,8 @@ public class TextFile {
 		return avgWrdLen;
 	}
 
-	public HashMap getMostCommon() {
-		return mostCommon;
-	}
-
-	public HashMap getWordOccurence() {
-		return wordOccurence;
+	public Map<String, Integer> getWordOccurrence() {
+		return wordOccurrence;
 	}
 
 	public void setName(String name) {
@@ -123,7 +113,7 @@ public class TextFile {
 		{ 
 			return 0; 
 			} 
-		String[] words = input.split("\\s+"); 
+		String[] words = input.split("\\W+"); 
 		return words.length;
 	}
 	
@@ -146,10 +136,22 @@ public class TextFile {
 		}
 		return count;
 	}
+	
+	public int calcBlank(String input) throws IOException {
+		BufferedReader br = new BufferedReader(new StringReader(input));
+		String line;
+		int empty = 0;
+		while ((line = br.readLine()) != null) {
+		  if (line.trim().isEmpty()) {
+		    empty++;
+		  }
+		}
+		return empty;
+	}
+	
 	//TODO avoid punctuation and lowercase!!!
-	public int calcAvgWordLen(String input)
-	{
-		String[] wordList = input.split(" ");
+	public int calcAvgWordLen(String input) {
+		String[] wordList = input.split("\\W+");
 		int totalChars = 0;
 		for(String i : wordList)
 		{
@@ -159,26 +161,44 @@ public class TextFile {
 		int average = (int)(totalChars/words);
 		return average;
 	}
-	//TODO avoid punctuation and lowercase
-	public Map.Entry<String, Integer> calcMostCommonWords(HashMap<String, Integer> occurrences)
-	{
-		Map.Entry<String, Integer> mostCommon = occurrences.entrySet().stream().sorted(Map.Entry.<String, Integer>comparingByValue().reversed()).findFirst().get();
-		return mostCommon;
-	}
-	public HashMap<String, Integer> initOccurrences(String input)
-	{
-		String[] wordList = input.split(" ");
+	
+	// Returns a Map of sorted occurrences in descending order
+	public Map<String, Integer> calcOccurrences(String input) {
+		String lowerCase = input.toLowerCase(); // Set to lowercase
+		String[] wordList = lowerCase.split("\\W+"); // Separate by non-word char
 		HashMap<String, Integer> occurrences = new HashMap<String, Integer>();
 		for(String j : wordList)
 		{
-			int count = 0;
 			if (occurrences.containsKey(j))
 			{
-				count = occurrences.get(j);
+				occurrences.put(j, occurrences.get(j) + 1);
+			} else {
+				occurrences.put(j, 1);
 			}
-			occurrences.put(j, count++);
 		}
-		return occurrences;
+		
+		return sortByValue(occurrences);
 	}
+	 /*
+	  * Sorts HashTable in descending value order
+	  */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public Map<String, Integer> sortByValue(HashMap<String, Integer> map) {
+		List list = new LinkedList(map.entrySet());
+		Collections.sort(list, new Comparator() {
+			 public int compare(Object o1, Object o2) {
+			      return -((Comparable) ((Map.Entry) (o1)).getValue())
+			     .compareTo(((Map.Entry) (o2)).getValue());
+			 }
+		});
+
+	   Map result = new LinkedHashMap();
+	   for (Iterator it = list.iterator(); it.hasNext();) {
+	       Map.Entry entry = (Map.Entry)it.next();
+	       result.put(entry.getKey(), entry.getValue());
+	   }
+
+	   return result;
+	} 
 
 }

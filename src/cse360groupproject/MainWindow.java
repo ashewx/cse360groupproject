@@ -196,6 +196,7 @@ public class MainWindow {
 						BufferedReader br = new BufferedReader(reader);
 						textArea.read(br, null);
 						TextFile file = new TextFile(chooser.getSelectedFile().getName(), textArea.getText());
+						
 						fileHistory.add(0, file); // Adds to file history at the start of list to organize for newest first
 						refresh(file);
 						br.close();
@@ -237,9 +238,9 @@ public class MainWindow {
 		textArea.setCaretPosition(0);
 		
 		// TODO: Get the top 3 words
-		topWord1.setText("TODO");
-		topWord2.setText("TODO");
-		topWord3.setText("TODO");
+		topWord1.setText((String) file.getWordOccurrence().keySet().toArray()[0]);
+		topWord2.setText((String) file.getWordOccurrence().keySet().toArray()[1]);
+		topWord3.setText((String) file.getWordOccurrence().keySet().toArray()[2]);
 	}
 
 	public ArrayList<TextFile> getFileHistory() {
