@@ -61,7 +61,6 @@ public class TextFile {
 	public int getBlankLn() {
 		return blankLn;
 	}
-
 	
 	public int getNumSpaces() {
 		return numSpaces;
@@ -149,7 +148,6 @@ public class TextFile {
 		return empty;
 	}
 	
-	//TODO avoid punctuation and lowercase!!!
 	public int calcAvgWordLen(String input) {
 		String[] wordList = input.split("\\W+");
 		int totalChars = 0;
