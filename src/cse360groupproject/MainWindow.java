@@ -237,7 +237,6 @@ public class MainWindow {
 		avrgWordLength.setText(Integer.toString(file.getAvgWrdLen()));
 		textArea.setCaretPosition(0);
 		
-		// TODO: Get the top 3 words
 		topWord1.setText((String) file.getWordOccurrence().keySet().toArray()[0]);
 		topWord2.setText((String) file.getWordOccurrence().keySet().toArray()[1]);
 		topWord3.setText((String) file.getWordOccurrence().keySet().toArray()[2]);
