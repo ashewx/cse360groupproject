@@ -86,40 +86,40 @@ public class MainWindow {
 		panel.add(lblFileLoaded, "cell 1 0");
 		
 		loadedFileName = new JLabel("");
-		panel.add(loadedFileName, "cell 7 0");
+		panel.add(loadedFileName, "cell 3 0");
 		
 		JLabel lbNumLines = new JLabel("Number of lines:");
 		panel.add(lbNumLines, "cell 1 2");
 		
 		numLines = new JLabel("");
-		panel.add(numLines, "cell 7 2");
+		panel.add(numLines, "cell 3 2");
 		
 		JLabel lbNumberBlankLines = new JLabel("Number of blank lines:");
 		panel.add(lbNumberBlankLines, "cell 1 3");
 		
 		numBlank = new JLabel("");
-		panel.add(numBlank, "cell 7 3");
+		panel.add(numBlank, "cell 3 3");
 		
 		JLabel lblNumOfSpaces = new JLabel("Number of spaces:");
 		panel.add(lblNumOfSpaces, "cell 1 4");
 		
 		numSpaces = new JLabel("");
-		panel.add(numSpaces, "cell 7 4");
+		panel.add(numSpaces, "cell 3 4");
 		
 		numWords = new JLabel("");
-		panel.add(numWords, "cell 7 5");
+		panel.add(numWords, "cell 3 5");
 		
 		JLabel lblNewLabel = new JLabel("Average characters per line:");
 		panel.add(lblNewLabel, "cell 1 6");
 		
 		avrgCharPerLine = new JLabel("");
-		panel.add(avrgCharPerLine, "cell 7 6");
+		panel.add(avrgCharPerLine, "cell 3 6");
 		
 		JLabel lblAverageWordLength = new JLabel("Average word length:");
 		panel.add(lblAverageWordLength, "cell 1 7");
 		
 		avrgWordLength = new JLabel("");
-		panel.add(avrgWordLength, "cell 7 7");
+		panel.add(avrgWordLength, "cell 3 7");
 		
 		JLabel lblMostCommonWords = new JLabel("Most common words:");
 		panel.add(lblMostCommonWords, "cell 1 8");

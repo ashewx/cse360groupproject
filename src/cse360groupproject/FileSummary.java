@@ -98,19 +98,19 @@ public class FileSummary {
 		panel_1.add(lblAverageNumberOf_2, "cell 0 3");
 		
 		avgNumSpaces = new JLabel(""); //TODO Add values from calculations
-		panel_1.add(avgNumSpaces, "cell 3 3");
+		panel_1.add(avgNumSpaces, "cell 2 3");
 		
 		JLabel lblAverageCharactersPer = new JLabel("Average characters per line:");
 		panel_1.add(lblAverageCharactersPer, "cell 0 4");
 		
 		avgCharPerLn = new JLabel(""); //TODO Add values from calculations
-		panel_1.add(avgCharPerLn, "cell 3 4");
+		panel_1.add(avgCharPerLn, "cell 2 4");
 		
 		JLabel lblAverageWordLength = new JLabel("Average word length:");
 		panel_1.add(lblAverageWordLength, "cell 0 5");
 		
 		avgWordLength = new JLabel(""); //TODO Add values from calculations
-		panel_1.add(avgWordLength, "cell 3 5");
+		panel_1.add(avgWordLength, "cell 2 5");
 		
 		JLabel lblMostCommonWords = new JLabel("Most common words:");
 		panel_1.add(lblMostCommonWords, "cell 0 6");
@@ -185,6 +185,22 @@ public class FileSummary {
 				mainFrame.setEnabled(true);
 			}
 		});
+		
+		refresh();
 	}
+	
+	// Refreshes the whole window when loading a new TextFile
+		public void refresh() {
+			avgNumLines.setText("TODO");
+			avgNumBlankLn.setText("TODO");
+			avgNumSpaces.setText("TODO");
+			avgCharPerLn.setText("TODO");
+			avgWordLength.setText("TODO");
+			
+			// TODO: Get the top 3 words
+			topWord1.setText("TODO");
+			topWord2.setText("TODO");
+			topWord3.setText("TODO");
+		}
 
 }
