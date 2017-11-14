@@ -28,7 +28,6 @@ public class FileSummary {
 	private JLabel avgNumSpaces;
 	private JLabel avgCharPerLn;
 	private JLabel avgWordLength;
-	private JLabel mstCommonWord;
 	private JTable histTable;
 
 	/**
@@ -64,7 +63,7 @@ public class FileSummary {
 		frame = new JFrame();
 		frame.setAlwaysOnTop(true);
 		frame.setTitle("File History");
-		frame.setBounds(100, 100, 767, 467);
+		frame.setBounds(100, 100, 798, 475);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		
@@ -73,12 +72,12 @@ public class FileSummary {
 		panel.setLayout(new BorderLayout(0, 0));
 		
 		JSplitPane splitPane = new JSplitPane();
-		splitPane.setResizeWeight(0.3);
+		splitPane.setResizeWeight(0.5);
 		panel.add(splitPane, BorderLayout.CENTER);
 		
 		JPanel panel_1 = new JPanel();
 		splitPane.setLeftComponent(panel_1);
-		panel_1.setLayout(new MigLayout("", "[][][][]", "[][][][][][][][][]"));
+		panel_1.setLayout(new MigLayout("", "[][][][]", "[][][][][][][][][][]"));
 		
 		JLabel lblAverageNumberOf = new JLabel("Average number of lines:");
 		panel_1.add(lblAverageNumberOf, "cell 0 1");
@@ -113,12 +112,37 @@ public class FileSummary {
 		JLabel lblMostCommonWords = new JLabel("Most common words:");
 		panel_1.add(lblMostCommonWords, "cell 0 6");
 		
-		mstCommonWord = new JLabel(""); //TODO Add values from calculations
-		panel_1.add(mstCommonWord, "cell 3 6,aligny top");
+		JLabel topLb1 = new JLabel("1)");
+		panel_1.add(topLb1, "cell 1 6");
+		
+		JLabel topWord1 = new JLabel("");
+		panel_1.add(topWord1, "cell 2 6");
+		
+		JLabel topLb2 = new JLabel("2)");
+		panel_1.add(topLb2, "cell 1 7");
+		
+		JLabel topWord2 = new JLabel("");
+		panel_1.add(topWord2, "cell 2 7");
+		
+		JLabel topLb3 = new JLabel("3)");
+		panel_1.add(topLb3, "cell 1 8");
+		
+		JLabel topWord3 = new JLabel("");
+		panel_1.add(topWord3, "cell 2 8");
 		
 		JButton btnLoadFile = new JButton("Load File");
 		
-		panel_1.add(btnLoadFile, "cell 0 8");
+		panel_1.add(btnLoadFile, "cell 0 9");
+		
+		btnLoadFile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int select = histTable.getSelectedRow(); // Get selected file by index
+				if(select >= 0) {
+					mWindow.refresh(mWindow.getFileHistory().get(select)); // Refresh text area of MainWindow
+					frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING)); // Close window
+				}
+			}
+		});
 		
 		JScrollPane scrollPane = new JScrollPane();
 		splitPane.setRightComponent(scrollPane);
@@ -156,16 +180,6 @@ public class FileSummary {
 		frame.addWindowListener(new WindowAdapter(){
 			public void windowClosing(WindowEvent e) {
 				mainFrame.setEnabled(true);
-			}
-		});
-		
-		btnLoadFile.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				int select = histTable.getSelectedRow(); // Get selected file by index
-				if(select >= 0) {
-					mWindow.refresh(mWindow.getFileHistory().get(select)); // Refresh text area of MainWindow
-					frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING)); // Close window
-				}
 			}
 		});
 	}

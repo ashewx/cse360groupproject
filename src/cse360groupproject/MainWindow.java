@@ -35,7 +35,6 @@ public class MainWindow {
 	private JLabel numWords;
 	private JLabel avrgCharPerLine;
 	private JLabel avrgWordLength;
-	private JLabel mostCmnWords;
 	private JTextArea textArea;
 	private ArrayList<TextFile> fileHistory = new ArrayList<TextFile>(); // Holds all files that were loaded
 
@@ -77,46 +76,46 @@ public class MainWindow {
 		
 		JPanel panel = new JPanel();
 		splitPane.setLeftComponent(panel);
-		panel.setLayout(new MigLayout("", "[][][][][]", "[][][][][][][][][][][][][][][][][][][][][][]"));
+		panel.setLayout(new MigLayout("", "[][][][][][][][]", "[][][][][][][][][][][][][][][][][][][][][][]"));
 		
 		JLabel lblFileLoaded = new JLabel("File Loaded:");
 		panel.add(lblFileLoaded, "cell 1 0");
 		
 		loadedFileName = new JLabel("");
-		panel.add(loadedFileName, "cell 4 0");
+		panel.add(loadedFileName, "cell 7 0");
 		
 		JLabel lbNumLines = new JLabel("Number of lines:");
 		panel.add(lbNumLines, "cell 1 2");
 		
 		numLines = new JLabel(""); // TODO Make listener to change values upon loading new values
-		panel.add(numLines, "cell 4 2");
+		panel.add(numLines, "cell 7 2");
 		
 		JLabel lbNumberBlankLines = new JLabel("Number of blank lines:");
 		panel.add(lbNumberBlankLines, "cell 1 3");
 		
 		numBlank = new JLabel(""); // TODO Make listener to change values upon loading new values
-		panel.add(numBlank, "cell 4 3");
+		panel.add(numBlank, "cell 7 3");
 		
 		JLabel lblNumOfSpaces = new JLabel("Number of spaces:");
 		panel.add(lblNumOfSpaces, "cell 1 4");
 		
 		numSpaces = new JLabel(""); // TODO Make listener to change values upon loading new values
-		panel.add(numSpaces, "cell 4 4");
+		panel.add(numSpaces, "cell 7 4");
 		
 		numWords = new JLabel(""); // TODO Make listener to change values upon loading new values
-		panel.add(numWords, "cell 4 5");
+		panel.add(numWords, "cell 7 5");
 		
 		JLabel lblNewLabel = new JLabel("Average characters per line:");
 		panel.add(lblNewLabel, "cell 1 6");
 		
 		avrgCharPerLine = new JLabel(""); // TODO Make listener to change values upon loading new values
-		panel.add(avrgCharPerLine, "cell 4 6");
+		panel.add(avrgCharPerLine, "cell 7 6");
 		
 		JLabel lblAverageWordLength = new JLabel("Average word length:");
 		panel.add(lblAverageWordLength, "cell 1 7");
 		
 		avrgWordLength = new JLabel(""); // TODO Make listener to change values upon loading new values
-		panel.add(avrgWordLength, "cell 4 7");
+		panel.add(avrgWordLength, "cell 7 7");
 		
 		JLabel lblMostCommonWords = new JLabel("Most common words:");
 		panel.add(lblMostCommonWords, "cell 1 8");
@@ -124,8 +123,23 @@ public class MainWindow {
 		JLabel lblNumberOfWords = new JLabel("Number of words:");
 		panel.add(lblNumberOfWords, "cell 1 5");
 		
-		mostCmnWords = new JLabel(""); // TODO Make listener to change values upon loading new values
-		panel.add(mostCmnWords, "cell 4 8");
+		JLabel topLb1 = new JLabel("1)");
+		panel.add(topLb1, "cell 2 8");
+		
+		JLabel topWord1 = new JLabel("");
+		panel.add(topWord1, "cell 3 8");
+		
+		JLabel topLb2 = new JLabel("2)");
+		panel.add(topLb2, "cell 2 9");
+		
+		JLabel topWord2 = new JLabel("");
+		panel.add(topWord2, "cell 3 9");
+		
+		JLabel topLb3 = new JLabel("3)");
+		panel.add(topLb3, "cell 2 10");
+		
+		JLabel topWord3 = new JLabel("");
+		panel.add(topWord3, "cell 3 10");
 		
 		JButton btnFileHistoryStatisics = new JButton("File History Statisics");
 		btnFileHistoryStatisics.addActionListener(new ActionListener() {
@@ -135,7 +149,7 @@ public class MainWindow {
 				frmTextAnalyzer.setEnabled(false);
 			}
 		});
-		panel.add(btnFileHistoryStatisics, "cell 1 21");
+		panel.add(btnFileHistoryStatisics, "cell 1 12");
 		frmTextAnalyzer.getContentPane().add(splitPane);
 		
 		JScrollPane scrollPane = new JScrollPane();

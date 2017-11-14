@@ -6,6 +6,7 @@ import java.io.StringReader;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 
 public class TextFile {
 	private String name;
@@ -17,6 +18,8 @@ public class TextFile {
 	private int numWords;
 	private int avgCharPerLn;
 	private int avgWrdLen;
+	private HashMap wordOccurence;
+	private HashMap mostCommon;
 	
 	public TextFile(String name, String input) throws IOException {
 		this.name = name;
@@ -31,7 +34,6 @@ public class TextFile {
 		this.blankLn = calcBlank(input);
 		this.numLines = lineCount(input);
 		this.numSpaces = calcNumSpaces(input);
-		
 		this.numWords = calcNumWords(input);
 		this.avgCharPerLn = calcAvgCharPerLn(input);
 	}
@@ -79,6 +81,14 @@ public class TextFile {
 
 	public int getAvgWrdLen() {
 		return avgWrdLen;
+	}
+
+	public HashMap getMostCommon() {
+		return mostCommon;
+	}
+
+	public HashMap getWordOccurence() {
+		return wordOccurence;
 	}
 
 	public void setName(String name) {
