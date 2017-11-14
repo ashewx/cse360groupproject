@@ -7,6 +7,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 
 public class TextFile {
 	private String name;
@@ -18,8 +19,7 @@ public class TextFile {
 	private int numWords;
 	private int avgCharPerLn;
 	private int avgWrdLen;
-	private HashMap wordOccurence;
-	private HashMap mostCommon;
+	private HashMap<String, Integer> wordOccurrence;
 	
 	public TextFile(String name, String input) throws IOException {
 		this.name = name;
@@ -36,6 +36,8 @@ public class TextFile {
 		this.numSpaces = calcNumSpaces(input);
 		this.numWords = calcNumWords(input);
 		this.avgCharPerLn = calcAvgCharPerLn(input);
+		this.avgWrdLen = calcAvgWordLen(input);
+		this.wordOccurrence = initOccurrences(input);
 	}
 	
 	public int calcBlank(String input) throws IOException {
@@ -143,6 +145,40 @@ public class TextFile {
 		    }
 		}
 		return count;
+	}
+	//TODO avoid punctuation and lowercase!!!
+	public int calcAvgWordLen(String input)
+	{
+		String[] wordList = input.split(" ");
+		int totalChars = 0;
+		for(String i : wordList)
+		{
+			totalChars += i.length();
+		}
+		int words = wordList.length;
+		int average = (int)(totalChars/words);
+		return average;
+	}
+	//TODO avoid punctuation and lowercase
+	public Map.Entry<String, Integer> calcMostCommonWords(HashMap<String, Integer> occurrences)
+	{
+		Map.Entry<String, Integer> mostCommon = occurrences.entrySet().stream().sorted(Map.Entry.<String, Integer>comparingByValue().reversed()).findFirst().get();
+		return mostCommon;
+	}
+	public HashMap<String, Integer> initOccurrences(String input)
+	{
+		String[] wordList = input.split(" ");
+		HashMap<String, Integer> occurrences = new HashMap<String, Integer>();
+		for(String j : wordList)
+		{
+			int count = 0;
+			if (occurrences.containsKey(j))
+			{
+				count = occurrences.get(j);
+			}
+			occurrences.put(j, count++);
+		}
+		return occurrences;
 	}
 
 }
