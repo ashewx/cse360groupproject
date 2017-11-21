@@ -239,12 +239,24 @@ public class MainWindow {
 		
 		try {
 			topWord1.setText((String) file.getWordOccurrence().keySet().toArray()[0]);
-			topWord2.setText((String) file.getWordOccurrence().keySet().toArray()[1]);
-			topWord3.setText((String) file.getWordOccurrence().keySet().toArray()[2]);
-		} catch(ArrayIndexOutOfBoundsException e) {
-			// Do nothing: Not enough words in array
 		} catch (NullPointerException e) {
-			// Do nothing: No words
+			topWord1.setText("");
+		} catch(ArrayIndexOutOfBoundsException e) {
+			topWord1.setText("");
+		}
+		try {
+			topWord2.setText((String) file.getWordOccurrence().keySet().toArray()[1]);
+		} catch (NullPointerException e) {
+			topWord2.setText("");
+		} catch(ArrayIndexOutOfBoundsException e) {
+			topWord2.setText("");
+		}
+		try {
+			topWord3.setText((String) file.getWordOccurrence().keySet().toArray()[2]);
+		} catch (NullPointerException e) {
+			topWord3.setText("");
+		} catch(ArrayIndexOutOfBoundsException e) {
+			topWord3.setText("");
 		}
 	}
 
