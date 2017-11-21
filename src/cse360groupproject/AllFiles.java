@@ -24,8 +24,8 @@ public class AllFiles {
 		this.avgNumLine = 0;
 		this.avgNumBlank = 0;
 		this.avgNumSpaces = 0;
-		this.avgCharLine = 0;
-		this.avgWordLen = 0;
+		this.avgCharLine = calcAvgChar(history);
+		this.avgWordLen = calcWordLen(history);
 		this.wordOccurrence = calcWordOccurence(history);
 	}
 
@@ -54,11 +54,28 @@ public class AllFiles {
 	}
 	
 	public int calcAvgChar(ArrayList<TextFile> files) {
-		return 0;
+		int totalLine = 0;
+		int totalChar = 0;
+		for(int i = 0; i < files.size(); i++) {
+			totalLine += files.get(i).getNumLines();
+			totalChar += files.get(i).getInput().length() - files.get(i).getNumSpaces();
+		}
+		return totalChar/totalLine;
 	}
 	
 	public int calcWordLen(ArrayList<TextFile> files) {
-		return 0;
+		int totalWord = 0;
+		int totalChar = 0;
+		for(int i = 0; i < files.size(); i++) {
+			String[] wordList = files.get(i).getInput().split("\\W+");
+			for(String j : wordList)
+			{
+				totalChar += j.length();
+			}
+			totalWord += wordList.length;
+		}
+		int average = (int)(totalChar/totalWord);
+		return average;
 	}
 	
 	public Map<String, Integer> calcWordOccurence(ArrayList<TextFile> files) {
