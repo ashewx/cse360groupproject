@@ -196,16 +196,15 @@ public class FileSummary {
 			avgCharPerLn.setText(Integer.toString(stats.getAvgCharLine()));
 			avgWordLength.setText(Integer.toString(stats.getAvgWordLen()));
 			
-			// TODO: Get the top 3 words
 			try {
 				topWord1.setText((String) stats.getWordOccurrence().keySet().toArray()[0]);
 				topWord2.setText((String) stats.getWordOccurrence().keySet().toArray()[1]);
 				topWord3.setText((String) stats.getWordOccurrence().keySet().toArray()[2]);
 			} catch (NullPointerException e) {
 				// Do nothing: No words
-				topWord1.setText("TODO");
-				topWord2.setText("TODO");
-				topWord3.setText("TODO");
+				topWord1.setText("");
+				topWord2.setText("");
+				topWord3.setText("");
 			} catch(ArrayIndexOutOfBoundsException e) {
 				// Do nothing: Not enough words in array
 			}

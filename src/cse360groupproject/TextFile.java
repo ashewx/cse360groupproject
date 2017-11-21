@@ -177,6 +177,7 @@ public class TextFile {
 		
 		return sortByValue(occurrences);
 	}
+	
 	 /*
 	  * Sorts HashTable in descending value order
 	  */
@@ -198,5 +199,4 @@ public class TextFile {
 
 	   return result;
 	} 
-
 }
