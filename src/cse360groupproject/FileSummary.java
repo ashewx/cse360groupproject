@@ -133,7 +133,24 @@ public class FileSummary {
 		
 		JButton btnLoadFile = new JButton("Load File");
 		
-		panel_1.add(btnLoadFile, "cell 0 9");
+		panel_1.add(btnLoadFile, "flowx,cell 0 9");
+		
+		JButton btnDeleteFile = new JButton("Delete File");
+		btnDeleteFile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					int select = histTable.getSelectedRow();
+					mWindow.getFileHistory().remove(select);
+					refresh();
+					refreshTable();
+				} catch (NullPointerException e) {
+					// Do nothing
+				} catch(ArrayIndexOutOfBoundsException e) {
+					// Do nothing
+				}
+			}
+		});
+		panel_1.add(btnDeleteFile, "cell 0 9");
 		
 		btnLoadFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -198,16 +215,53 @@ public class FileSummary {
 			
 			try {
 				topWord1.setText((String) stats.getWordOccurrence().keySet().toArray()[0]);
-				topWord2.setText((String) stats.getWordOccurrence().keySet().toArray()[1]);
-				topWord3.setText((String) stats.getWordOccurrence().keySet().toArray()[2]);
 			} catch (NullPointerException e) {
 				// Do nothing: No words
 				topWord1.setText("");
+			} catch(ArrayIndexOutOfBoundsException e) {
+				topWord1.setText("");
+			}
+			try {
+				topWord2.setText((String) stats.getWordOccurrence().keySet().toArray()[1]);
+			} catch (NullPointerException e) {
+				// Do nothing: No words
 				topWord2.setText("");
+			} catch(ArrayIndexOutOfBoundsException e) {
+				topWord2.setText("");
+			}
+			try {
+				topWord3.setText((String) stats.getWordOccurrence().keySet().toArray()[2]);
+			} catch (NullPointerException e) {
+				// Do nothing: No words
 				topWord3.setText("");
 			} catch(ArrayIndexOutOfBoundsException e) {
-				// Do nothing: Not enough words in array
+				topWord3.setText("");
 			}
 		}
-
+		
+		@SuppressWarnings("serial")
+		public void refreshTable() {
+			//headers for the table
+	        String[] columns = new String[] {
+	            "File Name", "Date Loaded"
+	        };
+			//initialize table model with data
+	        DefaultTableModel model = new DefaultTableModel(columns, 0) {
+	            public boolean isCellEditable(int row, int column)
+	            {
+	              return false; //This causes all cells to be not editable
+	            }
+	        };
+	        
+	        // Add file list to table model
+	        for(int i = 0; i < mWindow.getFileHistory().size(); i++) {
+	        	String name = mWindow.getFileHistory().get(i).getName();
+	        	String date = mWindow.getFileHistory().get(i).getDate();
+	        	
+	        	Object[] data = {name, date};
+	        	
+	        	model.addRow(data);
+	        }
+	        histTable.setModel(model);
+		}
 }

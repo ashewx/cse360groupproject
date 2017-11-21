@@ -60,7 +60,11 @@ public class AllFiles {
 			totalLine += files.get(i).getNumLines();
 			totalChar += files.get(i).getInput().length() - files.get(i).getNumSpaces();
 		}
-		return totalChar/totalLine;
+		if(totalLine == 0 || totalChar == 0) {
+			return 0;
+		} else {
+			return (totalChar/totalLine);
+		}
 	}
 	
 	public int calcWordLen(ArrayList<TextFile> files) {
@@ -74,8 +78,12 @@ public class AllFiles {
 			}
 			totalWord += wordList.length;
 		}
-		int average = (int)(totalChar/totalWord);
-		return average;
+		if(totalChar == 0 || totalWord == 0) {
+			return 0;
+		} else {
+			int average = (int)(totalChar/totalWord);
+			return average;
+		}
 	}
 	
 	public Map<String, Integer> calcWordOccurence(ArrayList<TextFile> files) {
