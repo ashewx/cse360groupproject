@@ -21,12 +21,13 @@ public class AllFiles {
 	private Map<String, Integer> wordOccurrence;
 	
 	public AllFiles(ArrayList<TextFile> history) {
-		this.avgNumLine = 0;
-		this.avgNumBlank = 0;
-		this.avgNumSpaces = 0;
+		this.avgNumLine = calcAvgNumLines(history);
+		this.avgNumBlank = calcAvgNumBlankLines(history);
+		this.avgNumSpaces = calcAvgNumSpaces(history);
 		this.avgCharLine = calcAvgChar(history);
 		this.avgWordLen = calcWordLen(history);
 		this.wordOccurrence = calcWordOccurence(history);
+		
 	}
 
 	public int getAvgNumLine() {
@@ -52,6 +53,50 @@ public class AllFiles {
 	public Map<String, Integer> getWordOccurrence() {
 		return wordOccurrence;
 	}
+	
+	
+	public int calcAvgNumLines(ArrayList<TextFile> files) {
+		int totalLine = 0;
+		for(int i = 0; i < files.size(); i++) {
+			totalLine += files.get(i).getNumLines();
+		}
+		if(totalLine == 0) {
+			return 0;
+		} else {
+			return (totalLine/files.size());
+		}
+	}
+	
+		public int calcAvgNumBlankLines(ArrayList<TextFile> files) {
+			int totalBlankLines = 0;
+			for(int i = 0; i < files.size(); i++) {
+				totalBlankLines += files.get(i).getBlankLn();
+			}
+			if(totalBlankLines == 0) {
+				return 0;
+			} else {
+				return (totalBlankLines/files.size());
+			}
+		}
+		
+		public int calcAvgNumSpaces(ArrayList<TextFile> files) {
+			int totalSpaces = 0;
+			for(int i = 0; i < files.size(); i++) {
+				totalSpaces += files.get(i).getNumSpaces();
+			}
+			if(totalSpaces == 0) {
+				return 0;
+			} else {
+				return (totalSpaces/files.size());
+			}
+		}
+	
+	
+	
+	
+	
+	
+	
 	
 	public int calcAvgChar(ArrayList<TextFile> files) {
 		int totalLine = 0;

@@ -35,6 +35,7 @@ public class MainWindow {
 	private JLabel numWords;
 	private JLabel avrgCharPerLine;
 	private JLabel avrgWordLength;
+	private JLabel avrgNumLines;
 	private JTextArea textArea;
 	private JLabel topWord1;
 	private JLabel topWord2;
@@ -235,6 +236,7 @@ public class MainWindow {
 		numWords.setText(Integer.toString(file.getNumWords()));
 		avrgCharPerLine.setText(Integer.toString(file.getAvgCharPerLn()));
 		avrgWordLength.setText(Integer.toString(file.getAvgWrdLen()));
+
 		textArea.setCaretPosition(0);
 		
 		try {

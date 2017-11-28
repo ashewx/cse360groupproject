@@ -25,6 +25,7 @@ public class TextFile {
 	private int numWords;
 	private int avgCharPerLn;
 	private int avgWrdLen;
+
 	private Map<String, Integer> wordOccurrence;
 	
 	public TextFile(String name, String input) throws IOException {
