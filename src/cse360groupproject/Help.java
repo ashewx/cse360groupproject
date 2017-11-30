@@ -3,6 +3,9 @@ package cse360groupproject;
 import java.awt.EventQueue;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.InputStream;
+import java.net.URL;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -59,7 +62,9 @@ public class Help {
 		
 		// Add PDF controller to JFrame
 		frmHelp.add(viewerComponentPanel); 
-		controller.openDocument("Help.pdf"); 
+		// Find Help file in Jar executable
+		URL help1 = getClass().getResource("Help.pdf");
+		controller.openDocument(help1);
 		frmHelp.pack(); 
 		
 		frmHelp.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
